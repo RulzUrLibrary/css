@@ -1,0 +1,29 @@
+{
+  "name": "rulzurlibrary-css",
+  "version": "1.0.0",
+  "description": "Design for RulzUrLibrary website",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RulzUrLibrary/css.git"
+  },
+  "keywords": [
+    "css",
+    "design",
+    "rulzurlibrary"
+  ],
+  "author": "Maxime Vidori",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RulzUrLibrary/css/issues"
+  },
+  "homepage": "https://github.com/RulzUrLibrary/css#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0"
+  }
+}
