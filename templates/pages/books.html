@@ -1,0 +1,12 @@
+{{#> base}}
+  {{#*inline "menu"}}
+  {{#>menu collection=true}}
+  {{/menu}}
+  {{/inline}}
+  {{#*inline "content"}}
+    {{#each series}}
+    {{#>tile}}
+    {{/tile}}
+    {{/each}}
+  {{/inline}}
+{{/base}}

@@ -24,6 +24,7 @@
   "homepage": "https://github.com/RulzUrLibrary/css#readme",
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-connect": "^5.0.0"
+    "gulp-connect": "^5.0.0",
+    "gulp-hb": "^6.0.2"
   }
 }

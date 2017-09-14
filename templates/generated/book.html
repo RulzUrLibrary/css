@@ -1,0 +1,37 @@
+{{#> base}}
+  {{#*inline "menu"}}
+  {{#>menu collection=true}}
+  {{/menu}}
+  {{/inline}}
+  {{#*inline "content"}}
+  <h1 class="column text-center">{{title}}</h1>
+  <div class="column col-12">
+    <div class="divider"></div>
+  </div>
+
+  {{#each this.authors}}
+  <div class="column col-6">
+    <div class="tile">
+      <div class="tile-content">
+        <p class="tile-title">{{this.name}}</p>
+        <p class="tile-subtitle">Some bio stuff maybe...</p>
+        <p>
+          <button class="btn btn-primary btn-sm">Details</button>
+        </p>
+      </div>
+
+    </div>
+  </div>
+  {{/each}}
+
+  <div class="column col-12">
+    <div class="divider"></div>
+  </div>
+  <div class="column col-12">
+    <p class="text-justify">{{this.description}}</p>
+  </div>
+  <form class="column col-2 col-lg-4 col-md-6 col-sm-12" action="/books/">
+    <input class="btn btn-primary btn-block disabled" tabindex="-1" value="In collection" type="submit">
+  </form>
+  {{/inline}}
+{{/base}}
