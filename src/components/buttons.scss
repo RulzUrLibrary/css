@@ -1,20 +1,29 @@
 // Value used to lighten or darken a button's color depending on its state
-$color-modifier: 5;
+$color-modifier: 10;
 
-button,
-.button {
+button, .button {
   // <button> reset.
   // (See: https://github.com/necolas/normalize.css/blob/master/normalize.css)
   overflow: visible;
   text-transform: none;
   margin: 0;
   border: 0;
+  position: relative;
+  overflow: hidden;
   // <button> don't inherit their parent font.
   font: inherit;
   // <button> don't inherit this property from <html>.
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   color: $dark;
+  box-shadow: $shadow-2;
+  transition: background-color $transition-speed ease, color $transition-speed ease, box-shadow $transition-speed ease;
+  background: $lighter;
+
+  span {
+    position: relative;
+    z-index: 1;
+  }
 
   // By default, buttons that takes up the entire width of its container
   display: block;
@@ -30,7 +39,22 @@ button,
 
   cursor: pointer;
   user-select: none;
-  transition: .2s background-color ease-in-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    background: darken($lighter, 40%);
+    border: 50vh solid darken($lighter, 20%);
+    width: 30vh;
+    height: 30vh;
+    border-radius: 50%;
+    display: block;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
 
   // Buttons you shouldn't be able to click on it
   &.disabled,
@@ -48,46 +72,65 @@ button,
   // BUTTON STYLES
 
   // Default: for standard actions
-  background: $lighter;
-  &:hover { background: lighten($lighter, $color-modifier); }
-  &.selected,
-  &:active { background: darken($lighter, $color-modifier); }
+  &:hover {
+    box-shadow: $shadow-6;
+    background: darken($lighter, $color-modifier);
+  }
+
+  //&.selected, &:active { background: lighten($lighter, $color-modifier); }
+
+  &:active, &:focus {
+    &::before {
+      transition: transform ($transition-speed * 4) ease, opacity $transition-speed ease ($transition-speed * 1.3);
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
 
   // Primary: for primary actions in forms
   &.primary {
     background: $primary;
     color: #fff;
   }
-  &.primary:hover { background: lighten($primary, $color-modifier); }
-  &.primary.selected,
-  &.primary:active { background: darken($primary, $color-modifier); }
+  &.primary:hover { background: darken($primary, $color-modifier); }
+  //&.primary.selected,
+  //&.primary:active { background: lighten($primary, $color-modifier); }
+  &.primary::before { background: darken($primary, 40%); border: 50vh solid darken($primary, 20%); }
+
 
   // Success: for form whenever it creates something
   &.success {
     background: $success;
     color: #fff;
   }
-  &.success:hover { background: lighten($success, $color-modifier); }
-  &.success.selected,
-  &.success:active { background: darken($success, $color-modifier); }
+  &.success:hover { background: darken($success, $color-modifier); }
+  //&.success.selected,
+  //&.success:active { background: lighten($success, $color-modifier); }
+  &.success::before { background: darken($success, 40%); border: 50vh solid darken($success, 20%); }
 
   // Danger: for bad/destructive actions
   &.danger {
     background: $danger;
     color: #fff;
   }
-  &.danger:hover { background: lighten($danger, $color-modifier); }
-  &.danger.selected,
-  &.danger:active { background: darken($danger, $color-modifier); }
+  &.danger:hover { background: darken($danger, $color-modifier); }
+  //&.danger.selected,
+  //&.danger:active { background: lighten($danger, $color-modifier); }
+  &.danger::before { background: darken($danger, 40%); border: 50vh solid darken($danger, 20%); }
 
   // Alternate style
   &.dark {
     background: $dark;
     color: #fff;
   }
-  &.dark:hover { background: lighten($dark, $color-modifier); }
-  &.dark.selected,
-  &.dark:active { background: darken($dark, $color-modifier); }
+  &.dark:hover { background: darken($dark, $color-modifier); }
+  //&.dark.selected,
+  //&.dark:active { background: darken($dark, $color-modifier); }
+  &.dark::before { background: darken($dark, 40%); border: 50vh solid darken($dark, 20%); }
 
   // When the screen is big enough, buttons keep their width
   @include breakpoint(s) {
