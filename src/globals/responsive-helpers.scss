@@ -1,0 +1,17 @@
+// Responsive utility
+// See: http://css-tricks.com/conditional-media-query-mixins/
+@mixin breakpoint($point) {
+  $s: "(min-width:30em)";
+  $m: "(min-width:40em)";
+  $l: "(min-width:64em)";
+
+  @if $point == l {
+    @media all and #{$l} { @content; }
+  }
+  @else if $point == m {
+    @media all and #{$m} { @content; }
+  }
+  @else if $point == s {
+    @media all and #{$s} { @content; }
+  }
+}

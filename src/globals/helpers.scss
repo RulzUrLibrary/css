@@ -1,0 +1,46 @@
+// Visibility helpers
+.show {
+  display: block;
+}
+
+.hide,
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+// Positionning helpers
+.left{
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clearfix {
+  &:before,
+  &:after {
+    display: table;
+    content: " ";
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Text helpers
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}

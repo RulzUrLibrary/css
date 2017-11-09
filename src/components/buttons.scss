@@ -1,0 +1,124 @@
+// Value used to lighten or darken a button's color depending on its state
+$color-modifier: 5;
+
+button,
+.button {
+  // <button> reset.
+  // (See: https://github.com/necolas/normalize.css/blob/master/normalize.css)
+  overflow: visible;
+  text-transform: none;
+  margin: 0;
+  border: 0;
+  // <button> don't inherit their parent font.
+  font: inherit;
+  // <button> don't inherit this property from <html>.
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: $dark;
+
+  // By default, buttons that takes up the entire width of its container
+  display: block;
+  width: 100%;
+  text-decoration: none;
+
+  padding: .5em 1.5em;
+  border-radius: 2px;
+
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+
+  cursor: pointer;
+  user-select: none;
+  transition: .2s background-color ease-in-out;
+
+  // Buttons you shouldn't be able to click on it
+  &.disabled,
+  &:disabled{
+    pointer-events: none;
+    opacity: .4;
+  }
+
+  // Buttons that takes up the entire width of its container
+  &.block {
+    display: block;
+    width: 100%;
+  }
+
+  // BUTTON STYLES
+
+  // Default: for standard actions
+  background: $lighter;
+  &:hover { background: lighten($lighter, $color-modifier); }
+  &.selected,
+  &:active { background: darken($lighter, $color-modifier); }
+
+  // Primary: for primary actions in forms
+  &.primary {
+    background: $primary;
+    color: #fff;
+  }
+  &.primary:hover { background: lighten($primary, $color-modifier); }
+  &.primary.selected,
+  &.primary:active { background: darken($primary, $color-modifier); }
+
+  // Success: for form whenever it creates something
+  &.success {
+    background: $success;
+    color: #fff;
+  }
+  &.success:hover { background: lighten($success, $color-modifier); }
+  &.success.selected,
+  &.success:active { background: darken($success, $color-modifier); }
+
+  // Danger: for bad/destructive actions
+  &.danger {
+    background: $danger;
+    color: #fff;
+  }
+  &.danger:hover { background: lighten($danger, $color-modifier); }
+  &.danger.selected,
+  &.danger:active { background: darken($danger, $color-modifier); }
+
+  // Alternate style
+  &.dark {
+    background: $dark;
+    color: #fff;
+  }
+  &.dark:hover { background: lighten($dark, $color-modifier); }
+  &.dark.selected,
+  &.dark:active { background: darken($dark, $color-modifier); }
+
+  // When the screen is big enough, buttons keep their width
+  @include breakpoint(s) {
+    display: inline-block;
+    width: auto;
+  }
+}
+
+// Remove inner padding and border in Firefox 4+.
+// (See: https://github.com/necolas/normalize.css/blob/master/normalize.css)
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.button-group {
+  & > button, .button {
+    margin-left: -4px;
+    border-radius: 0;
+
+    // Force buttons in a group to keep their width
+    display: inline-block;
+    width: auto;
+  }
+
+  & > :first-child {
+    margin-left: 0;
+    border-radius: 2px 0 0 2px;
+  }
+
+  & > :last-child {
+    border-radius: 0 2px 2px 0;
+  }
+}

@@ -1,0 +1,156 @@
+{{#> base}}
+{{#*inline "content"}}
+<h1>Buttons</h1>
+
+<p>All buttons are by default responsive.</p>
+
+<h2>Various styles</h2>
+<h3>Using div</h3>
+<div class="col1of1">
+  <div class="button">Normal</div>
+  <div class="button primary">Primary</div>
+  <div class="button success">Success</div>
+  <div class="button danger">Danger</div>
+  <div class="button dark">Dark</div>
+</div>
+
+<h3>Using links</h3>
+<div class="col1of1">
+  <a href="#" class="button">Normal</a>
+  <a href="#" class="button primary">Primary</a>
+  <a href="#" class="button success">Success</a>
+  <a href="#" class="button danger">Danger</a>
+  <a href="#" class="button dark">Dark</a>
+</div>
+
+<h3>Using button</h3>
+<div class="col1of1">
+  <button >Normal</button>
+  <button class="primary">Primary</button>
+  <button class="success">Success</button>
+  <button class="danger">Danger</button>
+  <button class="dark">Dark</button>
+</div>
+<p>When using the button tag, the .button CSS class is not mandatory.</p>
+
+<h2>Disabled</h2>
+<h3>Using div</h3>
+<div class="col1of1">
+  <div class="button disabled">Normal</div>
+  <div class="button primary disabled">Primary</div>
+  <div class="button success disabled">Success</div>
+  <div class="button danger disabled">Danger</div>
+  <div class="button dark disabled">Dark</div>
+</div>
+
+<h3>Using links</h3>
+<div class="col1of1">
+  <a href="#" class="button disabled">Normal</a>
+  <a href="#" class="button primary disabled">Primary</a>
+  <a href="#" class="button success disabled">Success</a>
+  <a href="#" class="button danger disabled">Danger</a>
+  <a href="#" class="button dark disabled">Dark</a>
+</div>
+
+<h3>Using button</h3>
+<div class="col1of1">
+  <button disabled>Normal</button>
+  <button disabled class="primary">Primary</button>
+  <button disabled class="success">Success</button>
+  <button disabled class="danger">Danger</button>
+  <button disabled class="dark">Dark</button>
+  <p>When using the button tag, the .disabled CSS class can be replaced by the disabled attribute.</p>
+</div>
+
+<h2>Blocks</h2>
+<h3>Using div</h3>
+<div class="col1of1">
+  <div class="button block">Block Normal</div>
+  <div class="button primary block">Block Primary</div>
+  <div class="button success block">Block Success</div>
+  <div class="button danger block">Block Danger</div>
+  <div class="button dark block">Block Dark</div>
+</div>
+
+<h3>Using links</h3>
+<div class="col1of1">
+  <a href="#" class="button block">Block Normal</a>
+  <a href="#" class="button primary block">Block Primary</a>
+  <a href="#" class="button success block">Block Success</a>
+  <a href="#" class="button danger block">Block Danger</a>
+  <a href="#" class="button dark block">Block Dark</a>
+</div>
+
+<h3>Using buttons</h3>
+<div class="col1of1">
+  <button class="button block">Block Normal</button>
+  <button class="button primary block">Block Primary</button>
+  <button class="button success block">Block Success</button>
+  <button class="button danger block">Block Danger</button>
+  <button class="button dark block">Block Dark</button>
+</div>
+
+<h2>Button groups</h2>
+<h3>Using div</h3>
+<div class="button-group">
+  <div class="button dark">1</div>
+  <div class="button dark">...</div>
+  <div class="button dark selected">2</div>
+  <div class="button dark">3</div>
+  <div class="button dark">4</div>
+  <div class="button dark">...</div>
+  <div class="button dark">12</div>
+</div>
+
+<h3>Using links</h3>
+<div class="button-group">
+  <a href="#" class="button dark">1</a>
+  <a href="#" class="button dark">...</a>
+  <a href="#" class="button dark selected">2</a>
+  <a href="#" class="button dark">3</a>
+  <a href="#" class="button dark">4</a>
+  <a href="#" class="button dark">...</a>
+  <a href="#" class="button dark">12</a>
+</div>
+
+<h3>Using button</h3>
+<div class="button-group">
+  <button class="dark">1</button>
+  <button class="dark">...</button>
+  <button class="dark selected">2</button>
+  <button class="dark">3</button>
+  <button class="dark">4</button>
+  <button class="dark">...</button>
+  <button class="dark">42</button>
+</div>
+
+<p>The .selected CSS class can be used to force the :active state of the button.</p>
+
+<h2>Example</h2>
+<div class="col1of3 clearfix p1">
+  <p class="p1">Hej! Are you looking for something?</p>
+  <div class="text-right">
+    <button class="primary">Search</button>
+  </div>
+</div>
+
+<div class="col1of3 clearfix p1">
+  <p class="p1">Do you want to save this new receipe?</p>
+  <div class="text-right">
+    <button >Cancel</button>
+    <button class="success">Save</button>
+  </div>
+</div>
+
+<div class="col1of3 clearfix p1">
+  <p class="p1">You are about to delete a receipe. Are you sure?</p>
+  <div class="text-right">
+    <button>Cancel</button>
+    <button class="danger">Delete</Button>
+  </div>
+</div>
+
+<p>Fin.</p>
+
+{{/inline}}
+{{/base}}

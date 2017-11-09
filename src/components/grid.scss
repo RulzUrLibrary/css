@@ -1,0 +1,114 @@
+// Grid system
+$columns: 6;
+$rows: 16;
+$margin-padding: 4;
+$row-size: 2.5rem;
+$container-width: 64rem;
+
+// Helper function to omit the 'rem' unit when
+// property value is 0
+@function omit-zero($value) {
+ @return if($value == 0, $value, $value * 1rem);
+}
+
+// Border-box FTW!
+// See: http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: $container-width;
+  width: 94%;
+  margin: 0 auto;
+
+  @include breakpoint(m) {
+    width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+// Generate all the .colXofY classes
+// X <= Y and Y < $columns
+//
+// Two classes can't have the same width.
+// i.e .col2of4 and .col3of6 don't exist, because the have the
+// same computed width as .col1of2. Use .col1of2 instead
+//
+// The grid is only 'active' when the device width is large enough.
+
+// This list keeps track of all the available widths of the grid when it being
+// generated. It insures that a new .colXofY class is not generated if the grid
+// has another class with the same width.
+$list: ();
+@for $max-col from 1 through $columns {
+  @for $col from 1 through $max-col {
+    $width: $col / $max-col * 100%;
+
+    @if not index($list, $width) {
+      $list: append($list, $width, comma);
+
+      @include breakpoint(m) {
+        .col#{$col}of#{$max-col} {
+          float: left;
+          width: $width;
+        }
+      }
+
+    }
+  }
+}
+
+// Row classes
+@for $row from 1 through $rows {
+  .row#{$row} {
+    min-height: $row * $row-size;
+
+    @include breakpoint(m) {
+      height: $row * $row-size;
+    }
+  }
+}
+
+// Margins left (preXofY) & right (postXofY)
+// X <= Y and Y < $columns
+@for $max-col from 1 through $columns {
+  @for $col from 1 through $max-col {
+    @include breakpoint(m) {
+      .pre#{$col}of#{$max-col} {
+        margin-left: $col / $max-col * 100%;
+      }
+    }
+  }
+}
+
+@for $max-col from 1 through $columns {
+  @for $col from 1 through $max-col {
+    @include breakpoint(m) {
+      .post#{$col}of#{$max-col} {
+        margin-right: $col / $max-col * 100%;
+      }
+    }
+  }
+}
+
+@for $i from 0 through $margin-padding {
+  .m#{$i} { margin: omit-zero($i) }
+  .m#{$i}x { margin: 0 omit-zero($i); }
+  .m#{$i}y { margin: omit-zero($i) 0; }
+  .m#{$i}t { margin-top: omit-zero($i); }
+  .m#{$i}r { margin-right: omit-zero($i); }
+  .m#{$i}b { margin-bottom: omit-zero($i); }
+  .m#{$i}l { margin-left: omit-zero($i); }
+
+  .p#{$i} { padding: omit-zero($i); }
+  .p#{$i}x { padding: 0 omit-zero($i); }
+  .p#{$i}y { padding: omit-zero($i) 0; }
+}
+
+.centered {
+  float: none;
+  margin: 0 auto;
+}

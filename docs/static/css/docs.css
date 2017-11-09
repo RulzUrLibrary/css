@@ -1,0 +1,36 @@
+/*
+  Documentation specific CSS
+*/
+hr {
+  margin: 1rem 0;
+  width: auto;
+  border-top: 1px solid #ccc;
+}
+
+.demo {
+  text-align: center;
+  color: #111;
+}
+.demo:nth-of-type(1n) { background-color: #0074d9; }
+.demo:nth-of-type(2n) { background-color: #7fdbff; }
+.demo:nth-of-type(3n) { background-color: #39cccc; }
+.demo:nth-of-type(4n) { background-color: #3d9970; }
+.demo:nth-of-type(5n) { background-color: #2ecc40; }
+.demo:nth-of-type(6n) { background-color: #01ff70; }
+.demo:nth-of-type(7n) { background-color: #ffdc00; }
+.demo:nth-of-type(8n) { background-color: #ff851b; }
+.demo:nth-of-type(9n) { background-color: #ff4136; }
+.demo:nth-of-type(10n) { background-color: #f012be; }
+.demo:nth-of-type(11n) { background-color: #b10dc9; }
+.demo:nth-of-type(12n) { background-color: #85144b; }
+
+.bg-teal { background-color: #39cccc; }
+.bg-olive { background-color: #3d9970; }
+.bg-green { background-color: #2ecc40; }
+.bg-lime { background-color: #01ff70; }
+.bg-yellow { background-color: #ffdc00; }
+.bg-orange { background-color: #ff851b; }
+.bg-red { background-color: #ff4136; }
+.bg-fuchsia { background-color: #f012be; }
+.bg-purple { background-color: #b10dc9; }
+.bg-maroon { background-color: #85144b; }
