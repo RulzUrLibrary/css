@@ -1,27 +1,57 @@
-@font-face {
-  font-family: 'Open Sans';
-  src: url('fonts/Regular/OpenSans-Regular.eot');
-  src: url('fonts/Regular/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
-       url('fonts/Regular/OpenSans-Regular.woff') format('woff'),
-       url('fonts/Regular/OpenSans-Regular.ttf') format('truetype'),
-       url('fonts/Regular/OpenSans-Regular.svg#OpenSansRegular') format('svg');
-  font-weight: 400;
-  font-style: normal;
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
 }
 
-@font-face {
-  font-family: 'Open Sans';
-  src: url('fonts/Semibold/OpenSans-Semibold.eot');
-  src: url('fonts/Semibold/OpenSans-Semibold.eot?#iefix') format('embedded-opentype'),
-       url('fonts/Semibold/OpenSans-Semibold.woff') format('woff'),
-       url('fonts/Semibold/OpenSans-Semibold.ttf') format('truetype'),
-       url('fonts/Semibold/OpenSans-Semibold.svg#OpenSansSemibold') format('svg');
-  font-weight: 600;
-  font-style: normal;
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+  eot: "?",
+  svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+  otf: "opentype",
+  ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
 }
+@include font-face("Oswald", "/static/css/fonts/oswald/Oswald-Regular");
+@include font-face("Oswald", "/static/css/fonts/oswald/Oswald-Bold", bold);
+@include font-face("OswaldLight", "/static/css/fonts/oswald/Oswald-Light");
+
+@include font-face("Lato", "/static/css/fonts/lato/Lato-Regular", null, null, eot ttf woff woff2);
+@include font-face("Lato", "/static/css/fonts/lato/Lato-Bold", bold, null, eot ttf woff woff2);
+@include font-face("LatoLight", "/static/css/fonts/lato/Lato-Light", null, null, eot ttf woff woff2);
 
 html {
-  font: 100%/2 "Open Sans", sans-serif;
+  font: 100%/2 "Lato", sans-serif;
   font-weight: 400;
   color: $light;
   -webkit-font-smoothing: antialiased;
@@ -33,7 +63,23 @@ h2,
 h3,
 h4,
 h5 {
+  font-family: 'Oswald', arial, serif;
   color: $dark;
   font-weight: 600;
   margin: 0;
 }
+/*
+a {
+  color: $primary;
+  outline: none;
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:active,
+  &.active {
+    color: lighten($primary, 20%);
+    text-decoration: underline;
+  }
+}
+*/
