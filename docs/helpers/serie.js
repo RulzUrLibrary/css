@@ -33,6 +33,6 @@ module.exports = {
     };
   },
   link: function(serie) {
-    return serie.isbn ? utils.urlize('books', serie.isbn): utils.urlize('series', serie.id);
+    return serie.isbn ? ['books', serie.isbn]: ['series', serie.id];
   }
 };

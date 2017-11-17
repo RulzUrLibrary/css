@@ -2,10 +2,16 @@ var gulp = require('gulp');
 var connect = require('gulp-connect');
 var path = require('path');
 var hb = require('gulp-hb');
+var ghp = require('gulp-gh-pages');
 var obj = require('through2').obj;
 var gutil = require('gulp-util');
 var sass = require('gulp-sass');
 var del = require('del');
+
+
+var url = function() {
+  return (gutil.env.prod ? '/css/' : '/') + [].slice.call(arguments, 0, -1).join('/');
+}
 
 var paths = {
   src: {
@@ -30,6 +36,8 @@ var paths = {
     data:       path.join('docs', 'data', '*.{js,json}')
   }
 };
+
+gutil.env.prod = false;
 
 gulp.task('watch', ['templates', 'fonts', 'copy', 'build'], function () {
   var last = (new Date).getTime();
@@ -77,7 +85,7 @@ gulp.task('templates:pages', function () {
     partials: paths.docs.partials,
     data: paths.docs.data,
     helpers: paths.docs.helpers
-  }))
+  }).helpers({'url': url}))
   .pipe(gulp.dest(paths.dist.base));
 });
 
@@ -102,7 +110,7 @@ gulp.task('templates:books', function() {
   .pipe(hb({
     partials: paths.docs.partials,
     helpers: paths.docs.helpers
-  }))
+  }).helpers({'url': url}))
   .pipe(gulp.dest(paths.dist.books));
 });
 
@@ -127,7 +135,7 @@ gulp.task('templates:series', function () {
   .pipe(hb({
     partials: paths.docs.partials,
     helpers: paths.docs.helpers
-  }))
+  }).helpers({'url': url}))
   .pipe(gulp.dest(paths.dist.series));
 });
 
@@ -138,6 +146,13 @@ gulp.task('serve', ['watch'], function () {
     host: '0.0.0.0',
     port: 8000
   });
+});
+
+gulp.task('prod', function() { gutil.env.prod = true; });
+
+gulp.task('deploy', ['prod', 'templates', 'fonts', 'copy', 'build'], function() {
+  return gulp.src(path.join(paths.dist.base, '**', '*'))
+  .pipe(ghp());
 });
 
 gulp.task('default', ['serve']);
