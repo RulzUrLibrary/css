@@ -1,5 +1,5 @@
 function urlize() {
-  return [].join.call(arguments, '/') + '.html'
+  return '/' + [].join.call(arguments, '/')
 }
 
 module.exports = {
